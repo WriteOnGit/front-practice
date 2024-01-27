@@ -10,11 +10,20 @@ function App() {
   function increaseClicks(){
     setClicks(clicks + 1)
   }
+
+  function resetClicks() {
+    setClicks(0)
+
+  }
+    
+  
+
   return (
     <div className="App">
       <header className="App-header">
        <RedButton onClick={increaseClicks}>Не нажимать</RedButton>
        <Counter>И все же ты нажал {clicks} раз</Counter>
+       <BlueButton onClick={resetClicks}>Сброс</BlueButton>
 
       </header>
     </div>
@@ -49,3 +58,25 @@ const Counter = styled.p({
   color: '#FFFFFF',
 });
 
+
+
+const BlueButton = styled.button({
+
+  height:100,
+  width:200,
+  backgroundColor:'#1E90FF',
+  color:'#FFFFFF',
+  fontSize:18,
+  fontWeight:700,
+  borderRadius:'0%',
+  border:'3px solid #FFFFFF',
+  cursor:'pointer',
+
+  '&:hover': {
+    backgroundColor: '#6495ED',
+  },
+  '&:active': {
+    backgroundColor: '#0000FF',
+  },
+
+});
