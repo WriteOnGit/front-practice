@@ -3,12 +3,42 @@ import logo from './logo.svg';
 import './App.css';
 import styled from 'styled-components'
 
+interface ClickData {
+  clicks:number;
+}
+
 function App() {
 
   const  [clicks,setClicks] = React.useState(0);
 
+  React.useEffect(function() {
+    fetch('http://localhost:8000/clicks').then(function(response){
+      return response.json();
+    }).then(function(data:ClickData){
+      setClicks(data.clicks);
+
+    
+
+    });
+  },[]);
+
   function increaseClicks(){
-    setClicks(clicks + 1)
+    setClicks(clicks + 1);
+
+    const data:ClickData = {
+      clicks:clicks+1,
+    };
+
+    fetch('http://localhost:8000/clicks',{
+      method:'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+
+    });
+
   }
 
   function resetClicks() {
